@@ -19,9 +19,9 @@ func _ready() -> void:
 	pass # Replace with function body
 
 func _launch(start:Vector2, end:Vector2) -> void:
-	var y = (-(end[1] - start[1])*4) * POWER
 	#print("Start = " + str(start[0]) + " " + str(start[1]))
 	#print("End = " + str(end[0]) + " " + str(end[1]))
+	var y = (-(end[1] - start[1])*3) * POWER
 	var x = (-(end[0] - start[0])  ) * POWER
 	#print("X = " + str(x))
 	#print("Y = " + str(y))
