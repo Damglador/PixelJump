@@ -3,6 +3,7 @@ extends CharacterBody2D
 @onready var walls = get_tree().get_root().get_node("Game/Walls")
 @onready var death_zone = get_tree().get_root().get_node("Game/DeathZone")
 @export var POWER = 1
+@export var FRICTION = 3
 var maxpos = 640
 
 # Called when the node enters the scene tree for the first time.
@@ -66,7 +67,7 @@ func _physics_process(delta: float) -> void:
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 	else:
-		velocity.x = move_toward(velocity.x, 0, 5)
+		velocity.x = move_toward(velocity.x, 0, FRICTION)
 
 	move_and_slide()
 	
