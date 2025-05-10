@@ -44,10 +44,11 @@ func _input(event: InputEvent):
 		#print(event.get_position())
 	
 		
-func jump(x, y):
-	velocity.y += y
-	velocity.x += x
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+func jump(x, y) -> void:
+	if is_on_floor():
+		velocity.y += clamp(y, y, 1000)
+		velocity.x += clamp(x, x, 500)
+
 func _process(_delta: float) -> void:
 	pass
 
