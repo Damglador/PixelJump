@@ -31,7 +31,7 @@ func _launch(start:Vector2, end:Vector2) -> void:
 var startpos = null
 var endpos = null
 
-func _input(event: InputEvent):
+func _input(event: InputEvent) -> void:
 	if event is InputEventScreenTouch: 
 		if event.is_pressed():
 			startpos = event.get_position()
