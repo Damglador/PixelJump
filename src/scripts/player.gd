@@ -3,14 +3,16 @@ extends CharacterBody2D
 @onready var walls = get_tree().get_root().get_node("Game/Walls")
 const SPEED = 300.0
 const JUMP_VELOCITY = -400.0
+@onready var death_zone = get_tree().get_root().get_node("Game/DeathZone")
 @export var POWER = 1
+var maxpos = 640
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	print("Char Y = " + str(position.x))
 	print("Char X = " + str(position.y))
 	position.x = 170
-	position.y = 320
+	position.y = 580
 	# =========== DEBUG =================
 	#print(get_tree().get_root().get_tree_string())
 	#print(get_tree().get_root().get_node("Game/Walls").get_tree_string())
@@ -50,8 +52,18 @@ func jump(x, y):
 func _process(_delta: float) -> void:
 	pass
 
+func move_maxpos() -> void:
+	if position.y < maxpos:
+		maxpos = position.y
+		death_zone.position.y = maxpos - 200
+		#print(death_zone.position.y)
+		#$Camera2D.position_smoothing_enabled = false
+	#else:
+		#$Camera2D.position_smoothing_enabled = true
+
 func _physics_process(delta: float) -> void:
-	walls.position.y = self.position.y
+	walls.position.y = self.position.y # Move walls
+	move_maxpos()
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta

@@ -25,6 +25,11 @@ window/stretch/mode="viewport"
 display_server/driver.linuxbsd="wayland"
 window/handheld/orientation=1
 
+[global_group]
+
+Player=""
+Platform="Platforms for jumping, should be destroyed"
+
 [input_devices]
 
 pointing/emulate_touch_from_mouse=true
@@ -32,3 +37,4 @@ pointing/emulate_touch_from_mouse=true
 [rendering]
 
 renderer/rendering_method="mobile"
+textures/vram_compression/import_etc2_astc=true

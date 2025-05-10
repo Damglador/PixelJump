@@ -7,7 +7,7 @@ size = Vector2(77, 20)
 
 [node name="Platform" type="Node2D"]
 
-[node name="AnimatableBody2D" type="AnimatableBody2D" parent="."]
+[node name="AnimatableBody2D" type="CharacterBody2D" parent="." groups=["Platform"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatableBody2D"]
 position = Vector2(0.499998, 2.38419e-07)
