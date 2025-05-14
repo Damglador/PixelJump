@@ -2,9 +2,15 @@ extends CharacterBody2D
 
 @onready var walls = get_tree().get_root().get_node("Game/Walls")
 @onready var death_zone = get_tree().get_root().get_node("Game/DeathZone")
-@export var POWER = 1
+@onready var arrow = $TheArrow
+@export_category("Jump")
+@export var POWER = 1.5
+@export var MAXJUMP_Y = 1000
+@export var MAXJUMP_X = 500
 @export var FRICTION = 3
 var maxpos = 640
+var startpos = null
+var endpos = null
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -28,8 +34,6 @@ func _launch(start:Vector2, end:Vector2) -> void:
 	jump(x, y)
 
 
-var startpos = null
-var endpos = null
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventScreenTouch: 
@@ -46,8 +50,8 @@ func _input(event: InputEvent) -> void:
 		
 func jump(x, y) -> void:
 	if is_on_floor():
-		velocity.y += clamp(y, y, 1000)
-		velocity.x += clamp(x, x, 500)
+		velocity.y += clamp(y, -MAXJUMP_Y, MAXJUMP_Y)
+		velocity.x += clamp(x, -MAXJUMP_X, MAXJUMP_X)
 
 func _process(_delta: float) -> void:
 	pass
