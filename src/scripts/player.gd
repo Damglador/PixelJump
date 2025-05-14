@@ -68,8 +68,8 @@ func _physics_process(delta: float) -> void:
 	if collision != null and collision.get_angle() > 0:
 		velocity = velocity.bounce(collision.get_normal())
 		velocity.x *= 0.5
-		print(collision.get_angle())
-		print(collision.get_collider())
+		#print(collision.get_angle())
+		#print(collision.get_collider())
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta
