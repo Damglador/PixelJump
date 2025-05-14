@@ -11,7 +11,6 @@ size = Vector2(77, 20)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatableBody2D"]
 position = Vector2(0.499998, 2.38419e-07)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_nlgqw")
 one_way_collision = true
 

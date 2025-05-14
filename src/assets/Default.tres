@@ -1,0 +1,87 @@
+[gd_resource type="Theme" load_steps=8 format=3 uid="uid://mqftlux1003g"]
+
+[ext_resource type="Texture2D" uid="uid://dojuxe1vlc1y5" path="res://assets/UI.png" id="1_2yi7o"]
+[ext_resource type="FontFile" uid="uid://d2c2fv40ebrtm" path="res://assets/SomePixelWeirdFont.ttf" id="1_nmhd5"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_awpbh"]
+texture = ExtResource("1_2yi7o")
+texture_margin_left = 10.0
+texture_margin_top = 10.0
+texture_margin_right = 10.0
+texture_margin_bottom = 10.0
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+region_rect = Rect2(130, 0, 120, 65)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6nmsk"]
+texture = ExtResource("1_2yi7o")
+texture_margin_left = 10.0
+texture_margin_top = 10.0
+texture_margin_right = 10.0
+texture_margin_bottom = 10.0
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+region_rect = Rect2(0, 0, 120, 65)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_nmhd5"]
+texture = ExtResource("1_2yi7o")
+texture_margin_left = 10.0
+texture_margin_top = 5.0
+texture_margin_right = 10.0
+texture_margin_bottom = 15.0
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+region_rect = Rect2(0, 75, 120, 65)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_j7hto"]
+texture = ExtResource("1_2yi7o")
+texture_margin_left = 10.0
+texture_margin_top = 5.0
+texture_margin_right = 10.0
+texture_margin_bottom = 15.0
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+region_rect = Rect2(0, 150, 120, 65)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7ghkt"]
+texture = ExtResource("1_2yi7o")
+texture_margin_left = 10.0
+texture_margin_top = 10.0
+texture_margin_right = 10.0
+texture_margin_bottom = 10.0
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+region_rect = Rect2(130, 150, 120, 65)
+
+[resource]
+default_font_size = 50
+Button/colors/font_color = Color(0, 0, 0, 1)
+Button/colors/font_disabled_color = Color(0.400699, 0.400697, 0.400698, 0.5)
+Button/colors/font_focus_color = Color(0, 0, 0, 1)
+Button/colors/font_hover_color = Color(0, 0, 0, 1)
+Button/colors/font_pressed_color = Color(0, 0, 0, 1)
+Button/colors/icon_focus_color = Color(0, 0, 0, 1)
+Button/colors/icon_hover_color = Color(0, 0, 0, 1)
+Button/colors/icon_normal_color = Color(0, 0, 0, 1)
+Button/colors/icon_pressed_color = Color(0, 0, 0, 1)
+Button/constants/align_to_largest_stylebox = 0
+Button/constants/h_separation = 4
+Button/constants/icon_max_width = 0
+Button/constants/outline_size = 0
+Button/font_sizes/font_size = 50
+Button/fonts/font = ExtResource("1_nmhd5")
+Button/styles/disabled = SubResource("StyleBoxTexture_awpbh")
+Button/styles/focus = SubResource("StyleBoxTexture_6nmsk")
+Button/styles/hover = SubResource("StyleBoxTexture_nmhd5")
+Button/styles/normal = SubResource("StyleBoxTexture_j7hto")
+Button/styles/pressed = SubResource("StyleBoxTexture_7ghkt")
