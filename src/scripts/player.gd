@@ -2,6 +2,8 @@ extends CharacterBody2D
 
 @onready var walls = get_tree().get_root().get_node("Game/Walls")
 @onready var death_zone = get_tree().get_root().get_node("Game/DeathZone")
+@onready var score_display = get_tree().get_root().get_node("Game/Player/CanvasLayer/MarginContainer/Label")
+@onready var second = get_tree().get_root().get_node("Game/Player/Second")
 @onready var arrow = $TheArrow
 @export_category("Jump")
 @export var POWER = 3.0
@@ -9,6 +11,7 @@ extends CharacterBody2D
 @export var MAXJUMP_X = 500
 @export var FRICTION = 3
 @export var XOFFSET = 1
+var score = 0
 var maxpos = 640
 var startpos = null
 var endpos = null
@@ -51,7 +54,12 @@ func jump(x, y) -> void:
 		velocity.x += clamp(x, -MAXJUMP_X, MAXJUMP_X)
 
 func _process(_delta: float) -> void:
-	pass
+	score_display.text = "Рахунок: " + str(score)
+	
+func _on_second_timeout():
+	score -= 1
+	second.start()
+
 
 func move_maxpos() -> void:
 	if position.y < maxpos:
