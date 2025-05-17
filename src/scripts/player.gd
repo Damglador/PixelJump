@@ -4,10 +4,11 @@ extends CharacterBody2D
 @onready var death_zone = get_tree().get_root().get_node("Game/DeathZone")
 @onready var arrow = $TheArrow
 @export_category("Jump")
-@export var POWER = 1.5
+@export var POWER = 3.0
 @export var MAXJUMP_Y = 1000
 @export var MAXJUMP_X = 500
 @export var FRICTION = 3
+@export var XOFFSET = 1
 var maxpos = 640
 var startpos = null
 var endpos = null
@@ -25,12 +26,8 @@ func _ready() -> void:
 	pass # Replace with function body
 
 func _launch(start:Vector2, end:Vector2) -> void:
-	#print("Start = " + str(start[0]) + " " + str(start[1]))
-	#print("End = " + str(end[0]) + " " + str(end[1]))
-	var y = (-(end[1] - start[1])*3) * POWER
-	var x = (-(end[0] - start[0])  ) * POWER
-	#print("X = " + str(x))
-	#print("Y = " + str(y))
+	var y = (-(end[1] - start[1])        ) * POWER
+	var x = (-(end[0] - start[0])/XOFFSET) * POWER
 	jump(x, y)
 
 
