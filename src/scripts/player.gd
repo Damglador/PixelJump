@@ -36,10 +36,10 @@ func _launch(start:Vector2, end:Vector2) -> void:
 
 
 func _input(event: InputEvent) -> void:
-	if event is InputEventScreenTouch: 
+	if event is InputEventScreenTouch:
 		if event.is_pressed():
 			startpos = event.get_position()
-		if event.is_released():
+		if event.is_released() and startpos != null:
 			endpos = event.get_position()
 			_launch(startpos, endpos)
 	#if event is InputEventScreenDrag:
