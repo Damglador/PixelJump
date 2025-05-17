@@ -1,10 +1,42 @@
-[gd_scene format=3 uid="uid://52l1bit8ttpl"]
+[gd_scene load_steps=3 format=3 uid="uid://52l1bit8ttpl"]
 
-[node name="MainMenu" type="Node2D"]
+[ext_resource type="Theme" uid="uid://mqftlux1003g" path="res://assets/Default.tres" id="1_l6cm7"]
+[ext_resource type="Script" uid="uid://cfwuffdpuon6t" path="res://scripts/main_menu.gd" id="2_ekxnf"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -360.0
+offset_bottom = -640.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_l6cm7")
+script = ExtResource("2_ekxnf")
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
-offset_right = 720.0
-offset_bottom = 1280.0
+layout_mode = 0
+offset_top = 383.0
+offset_right = 360.0
+offset_bottom = 640.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
 layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="Play" type="Button" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Грати"
+
+[node name="Settings" type="Button" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Налаштування"
+
+[node name="Quit" type="Button" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Вийти"
+
+[connection signal="pressed" from="CenterContainer/VBoxContainer/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/Settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]
