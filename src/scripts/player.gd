@@ -15,11 +15,9 @@ var score = 0
 var maxpos = 640
 var startpos = null
 var endpos = null
-
+var arrow_end = Vector2.ZERO
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	#print("Char Y = " + str(position.x))
-	#print("Char X = " + str(position.y))
 	position.x = 170
 	position.y = 580
 	# =========== DEBUG =================
@@ -32,6 +30,8 @@ func _launch(start:Vector2, end:Vector2) -> void:
 	var y = (-(end[1] - start[1])        ) * POWER
 	var x = (-(end[0] - start[0])/XOFFSET) * POWER
 	jump(x, y)
+	arrow_end = Vector2.ZERO
+	queue_redraw()
 
 
 
@@ -42,11 +42,9 @@ func _input(event: InputEvent) -> void:
 		if event.is_released() and startpos != null:
 			endpos = event.get_position()
 			_launch(startpos, endpos)
-	#if event is InputEventScreenDrag:
-		#position.x = event.get_position().x
-		#position.y = event.get_position().y
-		#print(event.get_position())
-	
+	if event is InputEventScreenDrag and startpos != null:
+		arrow_end = event.get_position() - startpos
+		queue_redraw()
 		
 func jump(x, y) -> void:
 	if is_on_floor():
@@ -70,6 +68,21 @@ func move_maxpos() -> void:
 	#else:
 		#$Camera2D.position_smoothing_enabled = true
 
+const head_length = 40.0
+const head_angle = 0.3 #rad
+var clr := Color.RED
+
+func _draw() -> void:
+	# Стрілка
+	var end = -arrow_end
+	var length = 0
+	length = abs(clamp(end.x + end.y * 2, -100, 100))
+	end = end.normalized() * length
+	
+	draw_line(Vector2.ZERO, end, clr)
+	var head : Vector2 = -end.normalized() * head_length
+	draw_line(end, end + head.rotated(head_angle),  clr)
+	draw_line(end, end + head.rotated(-head_angle),  clr)
 func _physics_process(delta: float) -> void:
 	walls.position.y = self.position.y # Move walls
 	move_maxpos()
@@ -77,8 +90,6 @@ func _physics_process(delta: float) -> void:
 	if collision != null and collision.get_angle() > 0:
 		velocity = velocity.bounce(collision.get_normal())
 		velocity.x *= 0.5
-		#print(collision.get_angle())
-		#print(collision.get_collider())
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y += get_gravity().y * delta
