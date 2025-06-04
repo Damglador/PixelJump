@@ -64,7 +64,8 @@ expand_margin_bottom = 5.0
 region_rect = Rect2(130, 150, 120, 65)
 
 [resource]
-default_font_size = 50
+default_font_size = 30
+BoxContainer/constants/separation = 15
 Button/colors/font_color = Color(0, 0, 0, 1)
 Button/colors/font_disabled_color = Color(0.400699, 0.400697, 0.400698, 0.5)
 Button/colors/font_focus_color = Color(0, 0, 0, 1)
@@ -85,3 +86,5 @@ Button/styles/focus = SubResource("StyleBoxTexture_6nmsk")
 Button/styles/hover = SubResource("StyleBoxTexture_nmhd5")
 Button/styles/normal = SubResource("StyleBoxTexture_j7hto")
 Button/styles/pressed = SubResource("StyleBoxTexture_7ghkt")
+Label/font_sizes/font_size = 25
+Label/fonts/font = ExtResource("1_nmhd5")

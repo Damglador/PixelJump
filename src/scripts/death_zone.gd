@@ -1,24 +1,14 @@
 extends StaticBody2D
 
 @onready var player = get_tree().get_root().get_node("Game/Player")
-
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass
-
-	pass # Replace with function body.
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta: float) -> void:
-	pass
+@onready var camera = player.get_node("CharacterBody2D/Camera2D")
 
 
-func _on_area_2d_body_entered(body: Node2D) -> void:
+func _on_area_2d_body_entered(body: Node2D) -> void: # Активується коли щось входить у область
 	if is_instance_valid(body):
-			if body.is_in_group("Platform"):
-				body.queue_free()
-			if body.is_in_group("Player"):
-				player.get_node("CharacterBody2D/Camera2D").position_smoothing_enabled = true
-				await get_tree().create_timer(0.5).timeout
-				get_tree().reload_current_scene()
-				pass
+			if body.is_in_group("Platform"):# Якщо це платформа
+				body.queue_free()           # Видаляє її
+			if body.is_in_group("Player"):  # Якщо це гравець
+				camera.position_smoothing_enabled = true # Вимикає рух камери. Оскільки у камери швидкість згладжування дорівнює нулю, увімкнення згладжування вимикає її рух
+				await get_tree().create_timer(0.5).timeout # Чекає 0,5 секунд
+				get_tree().reload_current_scene() # Перезапускає сцену

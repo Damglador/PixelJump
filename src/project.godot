@@ -13,18 +13,23 @@ config_version=5
 config/name="PixelJump"
 run/main_scene="uid://52l1bit8ttpl"
 config/features=PackedStringArray("4.5", "Mobile")
-config/icon="res://icon.svg"
+config/icon="uid://no7r1a3n5g0d"
+config/windows_native_icon="res://player.ico"
+
+[autoload]
+
+Audio="*res://scenes/audio.tscn"
+vardb="*res://scripts/vardb.gd"
 
 [display]
 
 window/size/viewport_width=360
 window/size/viewport_height=640
-window/size/window_width_override=360
-window/size/window_height_override=640
 window/stretch/mode="canvas_items"
 window/stretch/aspect="keep_width"
 display_server/driver.linuxbsd="wayland"
 window/handheld/orientation=1
+window/vsync/vsync_mode=0
 
 [global_group]
 

@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://bmky7p1mgp2in"]
+[gd_scene load_steps=13 format=3 uid="uid://bmky7p1mgp2in"]
 
 [ext_resource type="Theme" uid="uid://mqftlux1003g" path="res://assets/Default.tres" id="1_ahhtf"]
 [ext_resource type="Script" uid="uid://df2h0vl2assea" path="res://scripts/hud.gd" id="1_oo0fn"]
 [ext_resource type="Texture2D" uid="uid://dojuxe1vlc1y5" path="res://assets/UI.png" id="3_5ysmq"]
 [ext_resource type="FontFile" uid="uid://d2c2fv40ebrtm" path="res://assets/SomePixelWeirdFont.ttf" id="4_6fi6k"]
+[ext_resource type="PackedScene" uid="uid://dg0j6u0hl0ay8" path="res://scenes/settings.tscn" id="5_uo2fv"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6fi6k"]
 texture = ExtResource("3_5ysmq")
@@ -41,6 +42,12 @@ expand_margin_right = 5.0
 expand_margin_bottom = 5.0
 region_rect = Rect2(0, 375, 65, 65)
 
+[sub_resource type="InputEventKey" id="InputEventKey_6fi6k"]
+keycode = 4194305
+
+[sub_resource type="Shortcut" id="Shortcut_uo2fv"]
+events = [SubResource("InputEventKey_6fi6k")]
+
 [node name="HUD" type="Control"]
 process_mode = 3
 layout_mode = 3
@@ -49,6 +56,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_ahhtf")
 script = ExtResource("1_oo0fn")
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
@@ -57,14 +65,29 @@ offset_right = 360.0
 offset_bottom = 640.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+visible = false
 layout_mode = 2
 
 [node name="Paused" type="Label" parent="CenterContainer/VBoxContainer"]
-visible = false
 layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 28
 theme_override_fonts/font = ExtResource("4_6fi6k")
 theme_override_font_sizes/font_size = 35
 text = "Призупинено"
+horizontal_alignment = 1
+
+[node name="Restart" type="Button" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Перезапустити"
+
+[node name="Settings" type="Button" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Налаштування"
+
+[node name="ToMenu" type="Button" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Головне меню"
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 0
@@ -76,11 +99,20 @@ theme_override_constants/margin_top = 20
 [node name="Pause" type="Button" parent="MarginContainer"]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
-theme = ExtResource("1_ahhtf")
 theme_override_styles/focus = SubResource("StyleBoxTexture_6fi6k")
 theme_override_styles/disabled = SubResource("StyleBoxTexture_uo2fv")
 theme_override_styles/hover = SubResource("StyleBoxTexture_047uy")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_5pdws")
 theme_override_styles/normal = SubResource("StyleBoxTexture_hd3ao")
+shortcut = SubResource("Shortcut_uo2fv")
+shortcut_in_tooltip = false
 
+[node name="Settings" parent="." instance=ExtResource("5_uo2fv")]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+
+[connection signal="pressed" from="CenterContainer/VBoxContainer/Restart" to="." method="_on_restart_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/Settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/ToMenu" to="." method="_on_to_menu_pressed"]
 [connection signal="pressed" from="MarginContainer/Pause" to="." method="_on_pause_pressed"]

@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://bkptdiym3vhls"]
+
+[ext_resource type="Script" uid="uid://d3drqmp5dtjql" path="res://scripts/rng_platform.gd" id="1_gfaij"]
+[ext_resource type="PackedScene" uid="uid://cmlcqwajv36xt" path="res://scenes/platform.tscn" id="2_rvft2"]
+
+[node name="RngPlatform" type="Node2D"]
+script = ExtResource("1_gfaij")
+
+[node name="Platform" parent="." instance=ExtResource("2_rvft2")]

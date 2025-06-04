@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://s5j4l0f4q516"]
+
+[ext_resource type="AudioStream" uid="uid://bgdrfir7jmlso" path="res://assets/ngini-ija.mp3" id="1_6n3bj"]
+
+[node name="Audio" type="Node"]
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+stream = ExtResource("1_6n3bj")
+autoplay = true
+bus = &"Music"
+parameters/looping = true

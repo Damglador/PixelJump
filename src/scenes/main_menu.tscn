@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://52l1bit8ttpl"]
+[gd_scene load_steps=4 format=3 uid="uid://52l1bit8ttpl"]
 
 [ext_resource type="Theme" uid="uid://mqftlux1003g" path="res://assets/Default.tres" id="1_l6cm7"]
 [ext_resource type="Script" uid="uid://cfwuffdpuon6t" path="res://scripts/main_menu.gd" id="2_ekxnf"]
+[ext_resource type="PackedScene" uid="uid://dg0j6u0hl0ay8" path="res://scenes/settings.tscn" id="3_bqqt6"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -22,6 +23,7 @@ offset_right = 360.0
 offset_bottom = 640.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+process_mode = 3
 layout_mode = 2
 theme_override_constants/separation = 15
 
@@ -36,6 +38,11 @@ text = "Налаштування"
 [node name="Quit" type="Button" parent="CenterContainer/VBoxContainer"]
 layout_mode = 2
 text = "Вийти"
+
+[node name="Settings" parent="." instance=ExtResource("3_bqqt6")]
+visible = false
+layout_mode = 1
+anchors_preset = 15
 
 [connection signal="pressed" from="CenterContainer/VBoxContainer/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/Settings" to="." method="_on_settings_pressed"]

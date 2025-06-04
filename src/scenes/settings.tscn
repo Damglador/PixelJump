@@ -1,0 +1,95 @@
+[gd_scene load_steps=5 format=3 uid="uid://dg0j6u0hl0ay8"]
+
+[ext_resource type="PackedScene" uid="uid://s3wxukot5200" path="res://scenes/volume_slider.tscn" id="1_5p8wc"]
+[ext_resource type="Theme" uid="uid://mqftlux1003g" path="res://assets/Default.tres" id="1_6wm04"]
+[ext_resource type="Script" uid="uid://cfjhgusw8scvk" path="res://scripts/settings.gd" id="2_f4mfi"]
+[ext_resource type="Script" uid="uid://bwqjwrk01dsi3" path="res://scripts/jump_power_slider.gd" id="2_r6d6q"]
+
+[node name="Settings" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -360.0
+offset_bottom = -640.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_6wm04")
+script = ExtResource("2_f4mfi")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 0
+offset_right = 360.0
+offset_bottom = 640.0
+
+[node name="CenterContainer" type="CenterContainer" parent="PanelContainer"]
+layout_mode = 2
+mouse_filter = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/CenterContainer"]
+layout_mode = 2
+
+[node name="Master_Label" type="Label" parent="PanelContainer/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Загальна гучність"
+
+[node name="Master_Slider" parent="PanelContainer/CenterContainer/VBoxContainer" instance=ExtResource("1_5p8wc")]
+layout_mode = 2
+size_flags_horizontal = 3
+bus_name = "Master"
+
+[node name="Music_Label" type="Label" parent="PanelContainer/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Гучність музики"
+
+[node name="Music_Slider" parent="PanelContainer/CenterContainer/VBoxContainer" instance=ExtResource("1_5p8wc")]
+layout_mode = 2
+size_flags_horizontal = 3
+bus_name = "Music"
+
+[node name="SFX_Label" type="Label" parent="PanelContainer/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Гучність звукових ефектів"
+
+[node name="SFX_Slider" parent="PanelContainer/CenterContainer/VBoxContainer" instance=ExtResource("1_5p8wc")]
+layout_mode = 2
+size_flags_horizontal = 3
+bus_name = "SFX"
+
+[node name="JumpPower_Label" type="Label" parent="PanelContainer/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Сила стрибка"
+
+[node name="JumpPower" type="HBoxContainer" parent="PanelContainer/CenterContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Slider" type="HSlider" parent="PanelContainer/CenterContainer/VBoxContainer/JumpPower"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+max_value = 10.0
+rounded = true
+script = ExtResource("2_r6d6q")
+
+[node name="Indicator" type="Label" parent="PanelContainer/CenterContainer/VBoxContainer/JumpPower"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "3"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="Back" type="Button" parent="PanelContainer/MarginContainer"]
+layout_mode = 2
+text = "Назад"
+
+[connection signal="value_changed" from="PanelContainer/CenterContainer/VBoxContainer/JumpPower/Slider" to="PanelContainer/CenterContainer/VBoxContainer/JumpPower/Slider" method="_on_value_changed"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/Back" to="." method="_on_back_pressed"]

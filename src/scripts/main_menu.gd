@@ -1,23 +1,13 @@
 extends Control
 
-
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	get_tree().paused = false # Вимикає паузу, якщо була
 
+func _on_play_pressed() -> void: # Активується коли натискається кнопка "Грати"
+	get_tree().change_scene_to_file("res://scenes/game.tscn") # Перемикає сцену на сцену гри
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta: float) -> void:
-	pass
-
-
-func _on_play_pressed() -> void:
-	get_tree().change_scene_to_file("res://scenes/game.tscn") # Replace with function body.
-
-
-func _on_settings_pressed() -> void:
-	pass # Replace with function body.
-
-
-func _on_quit_pressed() -> void:
-	get_tree().quit(0) # Replace with function body.
+func _on_quit_pressed() -> void: # Активується коли натискається кнопка "Вийти"
+	get_tree().quit(0) # Виходить з програми надсилаючи код 0, що означає успішний вихід програми
+	
+func _on_settings_pressed() -> void: # Активується коли натискається кнопка "Налаштування"
+	$Settings.visible = true
